@@ -16,6 +16,6 @@ public class Main {
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
 
-        api.addEventListener(new PingPongTest());
+        api.addEventListener(new TicTacBot());
     }
 }
