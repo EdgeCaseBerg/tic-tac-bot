@@ -11,3 +11,20 @@ Run the program, and then add the bot to your discord server and it will
 play games with people via the `!tt` commands.
 
 [application dashboard]:https://discord.com/developers/applications
+
+
+## Building an exe
+
+Run gradle `shadowJar` then
+
+```
+jpackage \
+-t app-image \
+-i build \
+-n tictacbot \
+--main-jar libs/PeetsBot1-1.0-SNAPSHOT-all.jar \
+--main-class space.peetseater.bot.Main \
+--verbose \
+--description "Plays Tic Tac toe with people" \
+--win-console
+```
