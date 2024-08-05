@@ -45,4 +45,13 @@ class TicTacGameTest  {
         ticTacGame.setBoxTo(3,3, TicTacGame.X);
         assertEquals(TicTacGame.EMPTY, ticTacGame.getWinner());
     }
+
+    @Test
+    void regressionTest() {
+        ticTacGame.setBoxTo(2,2, TicTacGame.X);
+        ticTacGame.setBoxTo(1,1, TicTacGame.O);
+        ticTacGame.setBoxTo(2,1, TicTacGame.X);
+        ticTacGame.setBoxTo(2,3, TicTacGame.O);
+        assertEquals(TicTacGame.EMPTY, ticTacGame.getWinner());
+    }
 }
