@@ -1,6 +1,4 @@
-package space.peetseater.bot;
-
-import space.peetseater.bot.tictac.TicTacGame;
+package space.peetseater.bot.tictac;
 
 import java.util.Scanner;
 import java.util.regex.MatchResult;

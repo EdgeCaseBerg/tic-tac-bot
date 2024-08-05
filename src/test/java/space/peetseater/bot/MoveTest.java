@@ -1,6 +1,7 @@
 package space.peetseater.bot;
 
 import org.junit.jupiter.api.Test;
+import space.peetseater.bot.tictac.Move;
 import space.peetseater.bot.tictac.TicTacGame;
 
 import static org.junit.jupiter.api.Assertions.*;

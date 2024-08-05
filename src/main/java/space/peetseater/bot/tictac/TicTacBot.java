@@ -1,11 +1,10 @@
-package space.peetseater.bot;
+package space.peetseater.bot.tictac;
 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
-import space.peetseater.bot.tictac.TicTacGame;
 
 import java.util.regex.Matcher;
 
@@ -41,7 +40,6 @@ public class TicTacBot extends ListenerAdapter {
         String noTT = gordonRamseyHATESTHISVARIABLE.substring(4).trim();
 
         handleMessage(noTT, channel);
-
     }
 
     private void handleMessage(String noTT, MessageChannel channel) {
