@@ -4,7 +4,6 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
 
@@ -30,31 +29,31 @@ public class TicTacBot extends ListenerAdapter {
         if (event.getAuthor().isBot()) return;
 
         Message message = event.getMessage();
-        String gordonRamseyHATESTHISVARIABLE = message.getContentRaw();
+        String rawMessageContent = message.getContentRaw();
 
-        if (!gordonRamseyHATESTHISVARIABLE.startsWith("!tt ")) {
+        if (!rawMessageContent.startsWith("!tt ")) {
             return;
         }
 
         MessageChannel channel = event.getChannel();
-        String noTT = gordonRamseyHATESTHISVARIABLE.substring(4).trim();
+        String noTT = rawMessageContent.substring(4).trim();
 
         handleMessage(noTT, channel);
     }
 
-    private void handleMessage(String noTT, MessageChannel channel) {
-        if (noTT.equals("show")) {
+    private void handleMessage(String command, MessageChannel channel) {
+        if (command.equals("show")) {
             sendBoardStatus(channel);
             return;
         }
 
-        if (noTT.equals("new")) {
+        if (command.equals("new")) {
             ticTacGame = new TicTacGame();
             sendMessage(channel, "New game started! Take your first move!");
             return;
         }
 
-        if (noTT.equals("help")) {
+        if (command.equals("help")) {
             sendHelp(channel);
             return;
         }
@@ -69,18 +68,20 @@ public class TicTacBot extends ListenerAdapter {
             return;
         }
 
-        if (isValidMoveInput(noTT)) {
-            Move move = Move.parseMove(noTT);
-            if (ticTacGame.canPlaceValue(move.x(), move.y(), move.value())) {
-                ticTacGame.setBoxTo(move.x(), move.y(), move.value());
-                if (ticTacGame.hasWinner()) {
-                    String winner = ticTacGame.getWinnerName();
-                    sendMessage(channel,"%s has won, use `!tt new` to start a new game\n%s".formatted(winner, getFormattedBoardString()));
-                } else {
-                    sendBoardStatus(channel);
-                }
-            } else {
+        if (isValidMoveInput(command)) {
+            Move move = Move.parseMove(command);
+            if (!ticTacGame.canPlaceValue(move.x(), move.y(), move.value())) {
                 sendMessage(channel, "You can't place that there, try again\n" + getFormattedBoardString());
+                return;
+            }
+
+            ticTacGame.setBoxTo(move.x(), move.y(), move.value());
+
+            if (ticTacGame.hasWinner()) {
+                String winner = ticTacGame.getWinnerName();
+                sendMessage(channel,"%s has won, use `!tt new` to start a new game\n%s".formatted(winner, getFormattedBoardString()));
+            } else {
+                sendBoardStatus(channel);
             }
 
             return;
@@ -111,7 +112,7 @@ public class TicTacBot extends ListenerAdapter {
         sendMessage(channel, getFormattedBoardString());
     }
 
-    private @NotNull String getFormattedBoardString() {
+    private String getFormattedBoardString() {
         String currentBoard = ticTacGame.boardString();
         String codeTag = "```";
         return codeTag + currentBoard + codeTag;
