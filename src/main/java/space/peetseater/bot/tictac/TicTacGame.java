@@ -14,6 +14,7 @@ public class TicTacGame {
     final static public int X = 1;
     final static public int O = 2;
     private final HashMap<Integer, String> values = new HashMap<>();
+
     public TicTacGame() {
         values.put(EMPTY, " ");
         values.put(X, "X");
