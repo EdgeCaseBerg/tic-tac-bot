@@ -37,4 +37,10 @@ class MoveTest {
         assertEquals(3, move.y());
         assertEquals(TicTacGame.O, move.value());
     }
+
+    @Test
+    public void testInvalidInput() {
+        Move move = Move.parseMove("44 q");
+        assertEquals(Move.INVALID, move);
+    }
 }
