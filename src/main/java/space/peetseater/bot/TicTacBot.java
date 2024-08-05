@@ -52,6 +52,7 @@ public class TicTacBot extends ListenerAdapter {
 
         if (noTT.equals("new")) {
             ticTacGame = new TicTacGame();
+            sendMessage(channel, "New game started! Take your first move!");
             return;
         }
 
