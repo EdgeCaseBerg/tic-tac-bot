@@ -40,13 +40,11 @@ public class TicTacGame {
         for (int i = 0; i < 3; i++) {
             boolean sameInRow = board[i][0] == board[i][1] && board[i][0] == board[i][2];
             boolean sameInCol = board[0][i] == board[1][i] && board[0][i] == board[2][i];
-            if (sameInCol || sameInRow) {
-                if (sameInRow && board[i][0] != EMPTY) {
-                    return board[i][0];
-                }
-                if (sameInCol && board[0][i] != EMPTY) {
-                    return board[0][i];
-                }
+            if (sameInRow && board[i][0] != EMPTY) {
+                return board[i][0];
+            }
+            if (sameInCol && board[0][i] != EMPTY) {
+                return board[0][i];
             }
         }
 
