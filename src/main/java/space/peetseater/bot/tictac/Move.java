@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public record Move(int x, int y, int value) {
 
-    static final Pattern validMovePattern = Pattern.compile("([1-3])([1-3]) ([XxOo])");
+    public static final Pattern validMovePattern = Pattern.compile("([1-3])([1-3]) ([XxOo])");
 
     public final static Move INVALID = new Move(-1, -1, -1);
 
