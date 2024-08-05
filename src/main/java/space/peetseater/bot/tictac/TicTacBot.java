@@ -64,6 +64,11 @@ public class TicTacBot extends ListenerAdapter {
             return;
         }
 
+        if (ticTacGame.isBoardFilled()) {
+            sendMessage(channel, "The board is full! use !tt new to start fresh");
+            return;
+        }
+
         if (isValidMoveInput(noTT)) {
             Move move = Move.parseMove(noTT);
             if (ticTacGame.canPlaceValue(move.x(), move.y(), move.value())) {

@@ -28,6 +28,12 @@ public class TicTacGame {
         return true;
     }
 
+    /** Check if a value can be placed at a given location
+     * @param x value between 1 and 3 inclusive
+     * @param y value between 1 and 3 inclusive
+     * @param value 0 for EMPTY, 1 for X, 2 for O
+     * @return false if the value cannot be placed, true otherwise
+     * */
     public boolean canPlaceValue(int x, int y, int value) {
         if (!validMoveInputs(x, y, value)) return false;
 
@@ -35,6 +41,22 @@ public class TicTacGame {
         int ySubscript = y - 1;
 
         return board[xSubscript][ySubscript] == EMPTY;
+    }
+
+    /** Sets a value at a given location or does nothing.
+     *  If a move is not valid, then this method returns silently.
+     *
+     * @param x value between 1 and 3 inclusive
+     * @param y value between 1 and 3 inclusive
+     * @param value 0 for EMPTY, 1 for X, 2 for O
+     * */
+    public void setBoxTo(int x, int y, int value) {
+        if (!validMoveInputs(x,y,value)) return;
+
+        int xSubscript = x - 1;
+        int ySubscript = y - 1;
+
+        board[xSubscript][ySubscript] = value;
     }
 
     public int getWinner() {
@@ -56,13 +78,14 @@ public class TicTacGame {
         return EMPTY;
     }
 
-    public void setBoxTo(int x, int y, int value) {
-        if (!validMoveInputs(x,y,value)) return;
-
-        int xSubscript = x - 1;
-        int ySubscript = y - 1;
-
-        board[xSubscript][ySubscript] = value;
+    public boolean isBoardFilled() {
+        boolean filled = true;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                filled = filled && board[i][j] != EMPTY;
+            }
+        }
+        return filled;
     }
 
     public String boardString() {

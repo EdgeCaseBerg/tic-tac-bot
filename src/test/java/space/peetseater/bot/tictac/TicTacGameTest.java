@@ -61,4 +61,16 @@ class TicTacGameTest  {
         ticTacGame.setBoxTo(2,2, TicTacGame.X);
         assertEquals(TicTacGame.EMPTY, ticTacGame.getWinner());
     }
+
+    @Test
+    void isBoardFilledTest() {
+        for (int i = 1; i < 4; i++) {
+            for (int j = 1; j < 4; j++) {
+                ticTacGame.setBoxTo(i, j, TicTacGame.X);
+                boolean last = i == 3 && j == 3;
+                boolean isFilled = ticTacGame.isBoardFilled();
+                assertEquals(last, isFilled, "Expected %s, game state:\n%s".formatted(last, ticTacGame.boardString()));
+            }
+        }
+    }
 }
