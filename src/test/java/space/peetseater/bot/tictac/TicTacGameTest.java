@@ -39,6 +39,14 @@ class TicTacGameTest  {
     }
 
     @Test
+    void getWinnerDiagonal2() {
+        ticTacGame.setBoxTo(3,1, TicTacGame.X);
+        ticTacGame.setBoxTo(2,2, TicTacGame.X);
+        ticTacGame.setBoxTo(1,3, TicTacGame.X);
+        assertEquals(TicTacGame.X, ticTacGame.getWinner(), ticTacGame.boardString());
+    }
+
+    @Test
     void getNoWinner() {
         ticTacGame.setBoxTo(1,1, TicTacGame.X);
         ticTacGame.setBoxTo(2,2, TicTacGame.O);
