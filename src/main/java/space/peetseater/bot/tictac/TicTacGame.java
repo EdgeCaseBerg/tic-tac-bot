@@ -37,32 +37,16 @@ public class TicTacGame {
     }
 
     public int getWinner() {
-        for (int x = 0; x < 3; x++) {
-            boolean noEmptyRow = true;
-            boolean noEmptyColumn = true;
-            int rowTotal = 0;
-            int colTotal = 0;
-            for (int y = 0; y < 3; y++) {
-                if (board[x][y] == EMPTY) {
-                    noEmptyRow = false;
+        for (int i = 0; i < 3; i++) {
+            boolean sameInRow = board[i][0] == board[i][1] && board[i][0] == board[i][2];
+            boolean sameInCol = board[0][i] == board[1][i] && board[0][i] == board[2][i];
+            if (sameInCol || sameInRow) {
+                if (board[i][0] != EMPTY) {
+                    return board[i][0];
                 }
-                if (board[y][x] == EMPTY) {
-                    noEmptyColumn = false;
+                if (board[0][i] != EMPTY) {
+                    return board[0][i];
                 }
-                rowTotal += board[x][y];
-                colTotal += board[y][x];
-            }
-            if (noEmptyRow && rowTotal % 2 == 0) {
-                return O;
-            }
-            if (noEmptyRow && rowTotal % 2 == 1) {
-                return X;
-            }
-            if (noEmptyColumn && colTotal % 2 == 0) {
-                return O;
-            }
-            if (noEmptyColumn && colTotal % 2 == 1) {
-                return X;
             }
         }
 
