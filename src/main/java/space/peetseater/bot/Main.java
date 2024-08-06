@@ -3,7 +3,7 @@ package space.peetseater.bot;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import space.peetseater.bot.tictac.TicTacBot;
+import space.peetseater.bot.tictac.BotRouter;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,6 +17,6 @@ public class Main {
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                 .build();
 
-        api.addEventListener(new TicTacBot());
+        api.addEventListener(new BotRouter());
     }
 }
